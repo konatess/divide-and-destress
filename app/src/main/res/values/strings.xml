@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DivideandDestress</string>
+    <string name="action_settings">Settings</string>
+    <string name="edit_name">Name your assignment</string>
+    <string name="label_name">Name</string>
+    <string name="label_number_units">How many pages do you need to read?</string>
+    <string name="label_due">How many days to you have to finish?</string>
+</resources>
