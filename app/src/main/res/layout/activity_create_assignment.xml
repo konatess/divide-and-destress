@@ -10,9 +10,10 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:context=".CreateAssignmentActivity"
-        tools:layout_editor_absoluteX="193dp"
-        tools:layout_editor_absoluteY="177dp">
+        tools:layout_editor_absoluteY="47dp">
 
         <EditText
             android:id="@+id/editName"
@@ -24,6 +25,7 @@
             android:layout_marginRight="16dp"
             android:editable="true"
             android:ems="10"
+            android:importantForAutofill="no"
             android:inputType="textNoSuggestions|textCapSentences"
             app:layout_constraintBaseline_toBaselineOf="@+id/labelName"
             app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +80,7 @@
             app:layout_constraintTop_toBottomOf="@+id/labelNumberUnits" />
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/editNumUnits"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -86,13 +88,14 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:ems="10"
+            android:importantForAutofill="no"
             android:inputType="number"
             app:layout_constraintBaseline_toBaselineOf="@+id/labelNumberUnits"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/labelNumberUnits" />
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/editDue"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -100,6 +103,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:ems="10"
+            android:importantForAutofill="no"
             android:inputType="number"
             app:layout_constraintBaseline_toBaselineOf="@+id/labelDue"
             app:layout_constraintEnd_toEndOf="parent"
@@ -118,11 +122,18 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
             android:layout_marginBottom="80dp"
+            android:background="#8BC34A"
+            android:onClick="saveAssignment"
             android:text="@string/button_save"
+            android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
