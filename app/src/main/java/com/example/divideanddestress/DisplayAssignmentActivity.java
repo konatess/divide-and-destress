@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 public class DisplayAssignmentActivity extends AppCompatActivity {
 
     @Override
@@ -15,10 +19,30 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String name = intent.getStringExtra(CreateAssignmentActivity.EXTRA_NAME);
+        String fName = intent.getStringExtra(CreateAssignmentActivity.EXTRA_NAME);
+        try {
+            this.display(fName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    public void display(String fileName) throws IOException, ClassNotFoundException {
+        Assignment assignment;
+        try {
+            FileInputStream inputStream = openFileInput(fileName);
+            ObjectInputStream in = new ObjectInputStream(inputStream);
+            assignment = (Assignment) in.readObject();
+            in.close();
+            inputStream.close();
+        }
+        finally {
+            System.out.print("Getting Name");
+        }
 
         // Capture the layout's TextView and set the string as its text
-//        TextView textViewName = findViewById(R.id.displayName);
-//        textViewName.setText(name);
+        TextView textViewName = findViewById(R.id.displayName);
+        textViewName.setText(getString(R.string.display_name, assignment.name));
     }
 }

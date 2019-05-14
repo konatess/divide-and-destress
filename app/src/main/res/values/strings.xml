@@ -8,7 +8,7 @@
     <string name="label_due">Days to finish:</string>
     <string name="button_save">SAVE</string>
     <string name="display_name">
-        Name: <xliff:g id="name" example="Assignment 1">%1$s</xliff:g>
+        Name: <xliff:g id="name" example="Assignment 1">%s</xliff:g>
     </string>
 
 
