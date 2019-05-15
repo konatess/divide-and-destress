@@ -25,7 +25,10 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         Assignment assignment = new Assignment();
         assignment.name = name;
         try {
-            FileOutputStream outputStream = openFileOutput(name, Context.MODE_PRIVATE);
+            //Saving the "assign-" prefix in the string manager and calling resulted in
+            // weird number strings. So this string is written out here and in
+            // DisplayAssignmentActivity
+            FileOutputStream outputStream = openFileOutput("assign-" + name, Context.MODE_PRIVATE);
             ObjectOutputStream out = new ObjectOutputStream(outputStream);
             out.writeObject(assignment);
             out.close();

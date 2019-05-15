@@ -31,7 +31,10 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
     public void display(String fileName) throws IOException, ClassNotFoundException {
         Assignment assignment;
         try {
-            FileInputStream inputStream = openFileInput(fileName);
+            //Saving the "assign-" prefix in the string manager and calling resulted in
+            // weird number strings. So this string is written out here and in
+            // CreateAssignmentActivity
+            FileInputStream inputStream = openFileInput("assign-" + fileName);
             ObjectInputStream in = new ObjectInputStream(inputStream);
             assignment = (Assignment) in.readObject();
             in.close();

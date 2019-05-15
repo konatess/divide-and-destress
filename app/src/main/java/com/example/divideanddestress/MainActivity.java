@@ -10,9 +10,13 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.io.File;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +35,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+//        deleteFile("");
+        String[] files = fileList();
+        // Check for files with "assign-" prefix and display only those
+//        for (String file : lister.list())
+//        {
+//
+//        }
+        Log.d("FILE_NAMES", Arrays.toString(files));
     }
 
     @Override
