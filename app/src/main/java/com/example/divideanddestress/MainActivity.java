@@ -1,24 +1,33 @@
 package com.example.divideanddestress;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
+
+    //vars
+    private ArrayList<String> mNames = new ArrayList<>();
+    private ArrayList<String> mDues = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Log.d(TAG, "onCreate: started.");
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -37,13 +48,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 //        deleteFile("");
-        String[] files = fileList();
-        // Check for files with "assign-" prefix and display only those
-//        for (String file : lister.list())
-//        {
-//
-//        }
-        Log.d("FILE_NAMES", Arrays.toString(files));
+        getFiles();
+
     }
 
     @Override
@@ -66,5 +72,48 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void getFiles() {
+        Log.d(TAG, "getFiles: Getting files...");
+        String[] files = fileList();
+        // Check for files with "assign-" prefix and display only those
+        for (String file : files)
+        {
+            if (file.startsWith("assign-")) {
+                Assignment assignment = null;
+                try {
+                    FileInputStream inputStream = openFileInput(file);
+                    ObjectInputStream in = new ObjectInputStream(inputStream);
+                    assignment = (Assignment) in.readObject();
+                    in.close();
+                    inputStream.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                // The info from the file to each of the ArrayLists
+                if (assignment != null) {
+                    mNames.add(assignment.name);
+                    mDues.add(getString(R.string.list_item_due, assignment.due));
+                }
+            }
+        }
+        Log.d("FILE_NAMES", Arrays.toString(files));
+
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+        Log.d(TAG, "initRecyclerView: initiating RecyclerView");
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewMain);
+        RecyclerViewAdapter adapter =  new RecyclerViewAdapter(mNames, mDues, this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

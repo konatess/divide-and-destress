@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.io.FileInputStream;
@@ -29,7 +30,7 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
         }
     }
     public void display(String fileName) throws IOException, ClassNotFoundException {
-        Assignment assignment;
+        Assignment assignment = null;
         try {
             //Saving the "assign-" prefix in the string manager and calling resulted in
             // weird number strings. So this string is written out here and in
@@ -39,9 +40,8 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
             assignment = (Assignment) in.readObject();
             in.close();
             inputStream.close();
-        }
-        finally {
-            System.out.print("Getting Name");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         // Capture the layout's TextView and set the string as its text

@@ -10,5 +10,10 @@
     <string name="display_name">
         Name: <xliff:g id="name" example="Assignment 1">%s</xliff:g>
     </string>
-    <string name="assignments_directory">assigN</string>
+    <string name="list_item_due">
+        Due in <xliff:g id="due" example="0">%d</xliff:g> days
+    </string>
+    <string name="display_units_per_day">Need to complete <xliff:g id="perDay" example="0">%d</xliff:g> pages per day</string>
+    <string name="display_completed"><xliff:g id="completed" example="0">%d</xliff:g> of <xliff:g id="total" example="0">%d</xliff:g> pages completed</string>
+    <string name="display_units_remaining"><xliff:g id="completed" example="0">%d</xliff:g> pages remaining</string>
 </resources>

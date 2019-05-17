@@ -22,8 +22,16 @@ public class CreateAssignmentActivity extends AppCompatActivity {
     public void saveAssignment(View view) {
         EditText editName = findViewById(R.id.editName);
         String name = editName.getText().toString();
+        EditText editNumUnits = findViewById(R.id.editNumUnits);
+        EditText editDue = findViewById(R.id.editDue);
+        String numUnitsText = editNumUnits.getText().toString();
+        int numUnits = Integer.parseInt(numUnitsText);
+        String dueText = editDue.getText().toString();
+        int due = Integer.parseInt(dueText);
         Assignment assignment = new Assignment();
         assignment.name = name;
+        assignment.numUnits = numUnits;
+        assignment.due = due;
         try {
             //Saving the "assign-" prefix in the string manager and calling resulted in
             // weird number strings. So this string is written out here and in
@@ -39,14 +47,6 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         }
         Intent intent = new Intent(this, DisplayAssignmentActivity.class);
         intent.putExtra(EXTRA_NAME, name);
-//        EditText editNumUnits = (EditText) findViewById(R.id.editNumUnits);
-//        EditText editDue = (EditText) findViewById(R.id.editDue);
-//        String numUnitsText = editNumUnits.getText().toString();
-//        int numUnits = Integer.parseInt(numUnitsText);
-//        String dueText = editDue.getText().toString();
-//        int due = Integer.parseInt(dueText);
-//        intent.putExtra(EXTRA_NUM_UNITS, numUnits);
-//        intent.putExtra(EXTRA_DUE, due);
         startActivity(intent);
     }
 }
