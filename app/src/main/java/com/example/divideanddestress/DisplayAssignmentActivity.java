@@ -1,14 +1,12 @@
 package com.example.divideanddestress;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 
 public class DisplayAssignmentActivity extends AppCompatActivity {
@@ -21,21 +19,13 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
         String fName = intent.getStringExtra(CreateAssignmentActivity.EXTRA_NAME);
-        try {
-            this.display(fName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        this.display(fName);
     }
-    public void display(String fileName) throws IOException, ClassNotFoundException {
+    public void display(String fileName) {
+        // Read saved Assignment file
         Assignment assignment = null;
         try {
-            //Saving the "assign-" prefix in the string manager and calling resulted in
-            // weird number strings. So this string is written out here and in
-            // CreateAssignmentActivity
-            FileInputStream inputStream = openFileInput("assign-" + fileName);
+            FileInputStream inputStream = openFileInput(fileName);
             ObjectInputStream in = new ObjectInputStream(inputStream);
             assignment = (Assignment) in.readObject();
             in.close();
@@ -44,8 +34,19 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        // Capture the layout's TextView and set the string as its text
+        short unitsRemaining = (short) (assignment.unitsTotal - assignment.unitsCompleted);
+        float perDay = (float) unitsRemaining / assignment.daysRemaining;
+
+        // Fill info from file to TextViews
         TextView textViewName = findViewById(R.id.displayName);
         textViewName.setText(getString(R.string.display_name, assignment.name));
+        TextView textViewPerDay = findViewById(R.id.displayPerDay);
+        textViewPerDay.setText(getString(R.string.display_units_per_day, perDay));
+        TextView textViewCompleted = findViewById(R.id.displayCompleted);
+        textViewCompleted.setText(getString(R.string.display_completed, assignment.unitsCompleted, assignment.unitsTotal));
+        TextView textViewRemaining = findViewById(R.id.displayRemaining);
+        textViewRemaining.setText(getString(R.string.display_units_remaining, unitsRemaining));
+        TextView textViewDue = findViewById(R.id.displayDue);
+        textViewDue.setText(getString(R.string.list_item_due, assignment.daysRemaining));
     }
 }

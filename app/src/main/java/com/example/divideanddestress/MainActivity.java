@@ -77,10 +77,10 @@ public class MainActivity extends AppCompatActivity {
     private void getFiles() {
         Log.d(TAG, "getFiles: Getting files...");
         String[] files = fileList();
-        // Check for files with "assign-" prefix and display only those
+        // Check for files with prefix and display only those
         for (String file : files)
         {
-            if (file.startsWith("assign-")) {
+            if (file.startsWith(getString(R.string.prefix))) {
                 Assignment assignment = null;
                 try {
                     FileInputStream inputStream = openFileInput(file);
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 // The info from the file to each of the ArrayLists
                 if (assignment != null) {
                     mNames.add(assignment.name);
-                    mDues.add(getString(R.string.list_item_due, assignment.due));
+                    mDues.add(getString(R.string.list_item_due, assignment.daysRemaining));
                 }
             }
         }
