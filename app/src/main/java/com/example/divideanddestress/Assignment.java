@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 class Assignment implements Serializable {
     public String name;
-    public short unitsTotal;
-    public short unitsCompleted = 0;
-    public short daysTotal;
-    public short daysRemaining;
+    short unitsTotal;
+    short unitsCompleted = 0;
+    short daysTotal;
+    short daysRemaining;
 }
