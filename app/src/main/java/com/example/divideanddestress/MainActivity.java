@@ -14,10 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -82,20 +78,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         for (String file : files)
         {
             if (file.startsWith(getString(R.string.prefix))) {
-                Assignment assignment = null;
-                try {
-                    FileInputStream inputStream = openFileInput(file);
-                    ObjectInputStream in = new ObjectInputStream(inputStream);
-                    assignment = (Assignment) in.readObject();
-                    in.close();
-                    inputStream.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                Assignment assignment = new Assignment().getAssignment(this, file);
 
                 // The info from the file to each of the ArrayLists
                 if (assignment != null) {
