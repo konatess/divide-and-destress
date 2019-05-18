@@ -21,9 +21,10 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.OnAssignmentListener {
 
     private static final String TAG = "MainActivity";
+    private static final String EXTRA_NAME = "com.example.divideanddestress.NAME";
 
     //vars
     private ArrayList<String> mNames = new ArrayList<>();
@@ -115,5 +116,13 @@ public class MainActivity extends AppCompatActivity {
         RecyclerViewAdapter adapter =  new RecyclerViewAdapter(mNames, mDues, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public void OnAssignmentClick(int position) {
+        Log.d(TAG, "OnAssignmentClick: clicked " + position);
+        Intent intent = new Intent(this, DisplayAssignmentActivity.class);
+        intent.putExtra(EXTRA_NAME, getString(R.string.prefix) + mNames.get(position));
+        startActivity(intent);
     }
 }

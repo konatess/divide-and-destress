@@ -1,6 +1,5 @@
 package com.example.divideanddestress;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,23 +15,22 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
 
-    private ArrayList<String> mItemName = new ArrayList<>();
-    private ArrayList<String> mItemDue = new ArrayList<>();
-    private Context mContext;
+    private ArrayList<String> mItemName;
+    private ArrayList<String> mItemDue;
+    private OnAssignmentListener mOnAssignmentListener;
 
-    public RecyclerViewAdapter(ArrayList<String> itemName, ArrayList<String> itemDue, Context context) {
+    RecyclerViewAdapter(ArrayList<String> itemName, ArrayList<String> itemDue, OnAssignmentListener onAssignmentListener) {
         Log.d(TAG, "RecyclerViewAdapter: is called.");
         this.mItemName = itemName;
         this.mItemDue = itemDue;
-        this.mContext = context;
+        this.mOnAssignmentListener = onAssignmentListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+        return new ViewHolder(view, mOnAssignmentListener);
     }
 
     @Override
@@ -42,15 +40,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.itemName.setText(mItemName.get(position));
         holder.itemDue.setText(mItemDue.get(position));
-
-        holder.listItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " + mItemName.get(position));
-
-                // Insert navigation here
-            }
-        });
     }
 
     @Override
@@ -59,16 +48,29 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mItemName.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView itemName;
         TextView itemDue;
         RelativeLayout listItem;
-        public ViewHolder(@NonNull View itemView) {
+        OnAssignmentListener onAssignmentListener;
+
+        ViewHolder(@NonNull View itemView, OnAssignmentListener onAssignmentListener) {
             super(itemView);
             itemName = itemView.findViewById(R.id.itemName);
             itemDue = itemView.findViewById(R.id.itemDue);
             listItem = itemView.findViewById(R.id.listItem);
+            this.onAssignmentListener = onAssignmentListener;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            onAssignmentListener.OnAssignmentClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnAssignmentListener {
+        void OnAssignmentClick(int position);
     }
 }
