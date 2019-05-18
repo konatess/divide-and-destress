@@ -6,9 +6,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-
 public class DisplayAssignmentActivity extends AppCompatActivity {
 
     @Override
@@ -23,16 +20,7 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
     }
     public void display(String fileName) {
         // Read saved Assignment file
-        Assignment assignment = null;
-        try {
-            FileInputStream inputStream = openFileInput(fileName);
-            ObjectInputStream in = new ObjectInputStream(inputStream);
-            assignment = (Assignment) in.readObject();
-            in.close();
-            inputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Assignment assignment = new Assignment().getAssignment(this, fileName);
 
         if (assignment == null) {
             throw new AssertionError();
