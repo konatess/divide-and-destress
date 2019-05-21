@@ -107,5 +107,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         Intent intent = new Intent(this, DisplayAssignmentActivity.class);
         intent.putExtra(EXTRA_NAME, getString(R.string.prefix) + mNames.get(position));
         startActivity(intent);
+//        overridePendingTransition(R.anim.left_in, R.anim.left_out);
     }
 }

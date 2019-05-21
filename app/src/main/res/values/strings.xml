@@ -11,10 +11,10 @@
         Name: <xliff:g id="name" example="Assignment 1">%s</xliff:g>
     </string>
     <string name="list_item_due">
-        Due in <xliff:g id="due" example="0">%d</xliff:g> days
+        <xliff:g id="due" example="0">%d</xliff:g> days remaining
     </string>
     <string name="display_units_per_day">
-        Need to complete <xliff:g id="perDay" example="0.0">%1$.1f</xliff:g> pages per day
+        <xliff:g id="perDay" example="0.0">%1$.1f</xliff:g> pages per day
     </string>
     <string name="display_completed">
         <xliff:g id="completed" example="0">%d</xliff:g> of <xliff:g id="total" example="0">%d</xliff:g> pages completed
@@ -24,4 +24,6 @@
     </string>
     <string name="create_title">Create New</string>
     <string name="prefix">assign-</string>
+    <string name="hint_name">Choose a name</string>
+    <string name="hint_enter_number">Enter a number</string>
 </resources>

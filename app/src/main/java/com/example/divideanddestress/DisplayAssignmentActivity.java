@@ -18,6 +18,7 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
         String fName = intent.getStringExtra(CreateAssignmentActivity.EXTRA_NAME);
         this.display(fName);
     }
+
     public void display(String fileName) {
         // Read saved Assignment file
         Assignment assignment = new Assignment().getAssignment(this, fileName);
