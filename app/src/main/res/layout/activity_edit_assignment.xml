@@ -32,11 +32,11 @@
         android:layout_marginRight="16dp"
         android:ems="10"
         android:hint="@string/hint_name"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintBaseline_toBaselineOf="@+id/labelName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelName"
-        android:importantForAutofill="no" />
+        app:layout_constraintStart_toEndOf="@+id/labelName" />
 
     <TextView
         android:id="@+id/labelName"
@@ -59,13 +59,13 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/hint_enter_number"
         android:inputType="number"
         app:layout_constraintBaseline_toBaselineOf="@+id/labelCompleted"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelCompleted"
-        android:autofillHints="" />
+        app:layout_constraintStart_toEndOf="@+id/labelCompleted" />
 
     <EditText
         android:id="@+id/editTotal"
@@ -77,11 +77,11 @@
         android:layout_marginRight="16dp"
         android:ems="10"
         android:hint="@string/hint_enter_number"
+        android:importantForAutofill="no"
         android:inputType="number"
         app:layout_constraintBaseline_toBaselineOf="@+id/labelTotal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelTotal"
-        android:importantForAutofill="no" />
+        app:layout_constraintStart_toEndOf="@+id/labelTotal" />
 
     <EditText
         android:id="@+id/editDue"
@@ -93,11 +93,11 @@
         android:layout_marginRight="16dp"
         android:ems="10"
         android:hint="@string/hint_enter_number"
+        android:importantForAutofill="no"
         android:inputType="number"
         app:layout_constraintBaseline_toBaselineOf="@+id/labelDue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelDue"
-        android:importantForAutofill="no" />
+        app:layout_constraintStart_toEndOf="@+id/labelDue" />
 
     <EditText
         android:id="@+id/editStart"
@@ -109,11 +109,11 @@
         android:layout_marginRight="16dp"
         android:ems="10"
         android:hint="@string/hint_enter_number"
+        android:importantForAutofill="no"
         android:inputType="number"
         app:layout_constraintBaseline_toBaselineOf="@+id/labelStart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelStart"
-        android:importantForAutofill="no" />
+        app:layout_constraintStart_toEndOf="@+id/labelStart" />
 
     <TextView
         android:id="@+id/labelCompleted"
@@ -162,10 +162,10 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/label_edit_start"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelDue"
-        android:textColor="#000000" />
+        app:layout_constraintTop_toBottomOf="@+id/labelDue" />
 
     <Button
         android:id="@+id/button2"
