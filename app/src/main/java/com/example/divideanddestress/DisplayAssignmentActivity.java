@@ -2,11 +2,17 @@ package com.example.divideanddestress;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class DisplayAssignmentActivity extends AppCompatActivity {
+
+    public static final String EXTRA_NAME = "com.example.divideanddestress.NAME";
+    public static String editFileName = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +22,25 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
         String fName = intent.getStringExtra(CreateAssignmentActivity.EXTRA_NAME);
+        DisplayAssignmentActivity.editFileName = fName;
         this.display(fName);
+
+        FloatingActionButton fab = findViewById(R.id.fabEdit);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DisplayAssignmentActivity.this, EditAssignmentActivity.class);
+                intent.putExtra(EXTRA_NAME, DisplayAssignmentActivity.editFileName);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.left_in, R.anim.left_out);
     }
 
     public void display(String fileName) {
