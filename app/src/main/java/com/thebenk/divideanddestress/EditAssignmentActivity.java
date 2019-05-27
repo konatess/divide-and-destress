@@ -86,7 +86,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
 
         // if name is changed, delete old file by name.
         if (!oldName.equals(assignment.name)) {
-            deleteFile(getString(R.string.prefix) + assignment.name);
+            deleteFile(getString(R.string.prefix) + oldName);
         }
         // Add prefix for easy identification
         String fileName = getString(R.string.prefix) + name;
@@ -98,6 +98,4 @@ public class EditAssignmentActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_NAME, fileName);
         startActivity(intent);
     }
-
-
 }
