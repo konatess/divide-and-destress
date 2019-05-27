@@ -6,12 +6,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.thebenk.divideanddestress.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     //vars
     private ArrayList<String> mNames = new ArrayList<>();
     private ArrayList<String> mDues = new ArrayList<>();
+    private RecyclerViewAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +82,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: initiating RecyclerView");
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewMain);
-        RecyclerViewAdapter adapter =  new RecyclerViewAdapter(mNames, mDues, this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView mRecyclerView = findViewById(R.id.recyclerViewMain);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mAdapter =  new RecyclerViewAdapter(mNames, mDues, this);
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -93,4 +96,19 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         intent.putExtra(EXTRA_NAME, getString(R.string.prefix) + mNames.get(position));
         startActivity(intent);
     }
+
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            deleteFile("assign-" + mNames.get(viewHolder.getAdapterPosition()));
+            mNames.remove(viewHolder.getAdapterPosition());
+            mDues.remove(viewHolder.getAdapterPosition());
+            mAdapter.notifyDataSetChanged();
+        }
+    };
 }

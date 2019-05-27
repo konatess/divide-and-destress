@@ -7,10 +7,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.thebenk.divideanddestress.R;
-
 public class CreateAssignmentActivity extends AppCompatActivity {
-    public static final String EXTRA_NAME = "com.thebenkthebenk.divideanddestress.NAME";
+    public static final String EXTRA_NAME = "com.thebenk.divideanddestress.NAME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +19,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
     public void saveAssignment(View view) {
         // Convert user entries to usable data
         EditText createName = findViewById(R.id.createName);
-        String name = createName.getText().toString();
+        String name = createName.getText().toString().trim();
 
         EditText createNumUnits = findViewById(R.id.createNumUnits);
         String numUnitsText = createNumUnits.getText().toString();

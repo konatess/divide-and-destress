@@ -1,14 +1,12 @@
 package com.thebenk.divideanddestress;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import com.thebenk.divideanddestress.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class EditAssignmentActivity extends AppCompatActivity {
 
@@ -60,7 +58,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
     public void saveEditedAssignment(View view) {
         // Convert user entries to usable data
         EditText editName = findViewById(R.id.editName);
-        String name = editName.getText().toString();
+        String name = editName.getText().toString().trim();
 
         EditText editCompleted = findViewById(R.id.editCompleted);
         String unitsCompletedText = editCompleted.getText().toString();
@@ -87,7 +85,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
         assignment.daysTotal = start;
 
         // if name is changed, delete old file by name.
-        if (oldName != assignment.name) {
+        if (!oldName.equals(assignment.name)) {
             deleteFile(getString(R.string.prefix) + assignment.name);
         }
         // Add prefix for easy identification

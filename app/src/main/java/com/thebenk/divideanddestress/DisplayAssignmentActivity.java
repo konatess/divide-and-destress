@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.thebenk.divideanddestress.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class DisplayAssignmentActivity extends AppCompatActivity {
