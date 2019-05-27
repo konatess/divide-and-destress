@@ -1,4 +1,4 @@
-package com.example.divideanddestress;
+package com.thebenk.divideanddestress;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.thebenk.divideanddestress.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.OnAssignmentListener {
 
     private static final String TAG = "MainActivity";
-    private static final String EXTRA_NAME = "com.example.divideanddestress.NAME";
+    private static final String EXTRA_NAME = "com.thebenk.divideanddestress.NAME";
 
     //vars
     private ArrayList<String> mNames = new ArrayList<>();
@@ -91,6 +92,5 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         Intent intent = new Intent(this, DisplayAssignmentActivity.class);
         intent.putExtra(EXTRA_NAME, getString(R.string.prefix) + mNames.get(position));
         startActivity(intent);
-//        overridePendingTransition(R.anim.left_in, R.anim.left_out);
     }
 }

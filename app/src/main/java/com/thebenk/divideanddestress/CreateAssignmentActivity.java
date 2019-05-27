@@ -1,4 +1,4 @@
-package com.example.divideanddestress;
+package com.thebenk.divideanddestress;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,10 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.thebenk.divideanddestress.R;
+
 public class CreateAssignmentActivity extends AppCompatActivity {
-    public static final String EXTRA_NAME = "com.example.divideanddestress.NAME";
+    public static final String EXTRA_NAME = "com.thebenkthebenk.divideanddestress.NAME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,15 +20,15 @@ public class CreateAssignmentActivity extends AppCompatActivity {
 
     public void saveAssignment(View view) {
         // Convert user entries to usable data
-        EditText editName = findViewById(R.id.editName);
-        String name = editName.getText().toString();
+        EditText createName = findViewById(R.id.createName);
+        String name = createName.getText().toString();
 
-        EditText editNumUnits = findViewById(R.id.editNumUnits);
-        String numUnitsText = editNumUnits.getText().toString();
+        EditText createNumUnits = findViewById(R.id.createNumUnits);
+        String numUnitsText = createNumUnits.getText().toString();
         short numUnits = Short.parseShort(numUnitsText);
 
-        EditText editDue = findViewById(R.id.editDue);
-        String dueText = editDue.getText().toString();
+        EditText createDue = findViewById(R.id.createDue);
+        String dueText = createDue.getText().toString();
         short due = Short.parseShort(dueText);
 
         // Build Assignment object to save

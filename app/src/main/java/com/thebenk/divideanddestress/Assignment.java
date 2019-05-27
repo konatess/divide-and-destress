@@ -1,4 +1,4 @@
-package com.example.divideanddestress;
+package com.thebenk.divideanddestress;
 
 import android.content.Context;
 import android.util.Log;

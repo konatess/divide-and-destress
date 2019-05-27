@@ -1,4 +1,4 @@
-package com.example.divideanddestress;
+package com.thebenk.divideanddestress;
 
 import org.junit.Test;
 

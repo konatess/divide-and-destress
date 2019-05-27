@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.divideanddestress">
+    package="com.thebenk.divideanddestress">
 
     <application
         android:allowBackup="true"
@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditAssignmentActivity"></activity>
-        <activity android:name=".DisplayAssignmentActivity"></activity>
-        <activity android:name=".CreateAssignmentActivity"></activity>
+        <activity android:name="com.thebenk.divideanddestress.EditAssignmentActivity"/>
+        <activity android:name="com.thebenk.divideanddestress.DisplayAssignmentActivity"/>
+        <activity android:name="com.thebenk.divideanddestress.CreateAssignmentActivity"/>
         <activity
-            android:name=".MainActivity"
+            android:name="com.thebenk.divideanddestress.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

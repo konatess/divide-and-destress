@@ -1,4 +1,4 @@
-package com.example.divideanddestress;
+package com.thebenk.divideanddestress;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,11 +7,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.thebenk.divideanddestress.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class DisplayAssignmentActivity extends AppCompatActivity {
 
-    public static final String EXTRA_NAME = "com.example.divideanddestress.NAME";
+    public static final String EXTRA_NAME = "com.thebenk.divideanddestress.NAME";
     public static String editFileName = null;
 
     @Override
@@ -56,12 +57,16 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
             // Fill info from file to TextViews
             TextView textViewName = findViewById(R.id.displayName);
             textViewName.setText(getString(R.string.display_name, assignment.name));
+
             TextView textViewPerDay = findViewById(R.id.displayPerDay);
             textViewPerDay.setText(getString(R.string.display_units_per_day, perDay));
+
             TextView textViewCompleted = findViewById(R.id.displayCompleted);
             textViewCompleted.setText(getString(R.string.display_completed, assignment.unitsCompleted, assignment.unitsTotal));
+
             TextView textViewRemaining = findViewById(R.id.displayRemaining);
             textViewRemaining.setText(getString(R.string.display_units_remaining, unitsRemaining));
+
             TextView textViewDue = findViewById(R.id.displayDue);
             textViewDue.setText(getString(R.string.list_item_due, assignment.daysRemaining));
         }
