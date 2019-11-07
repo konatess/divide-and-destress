@@ -1,13 +1,13 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Divide And De-Stress</string>
     <string name="action_settings">Settings</string>
-    <string name="edit_name">Name your assignment</string>
-    <string name="label_name">Name:</string>
+    <string name="edit_name">Title your assignment</string>
+    <string name="label_name">Title:</string>
     <string name="label_number_units">Pages to read:</string>
     <string name="label_due">Days to finish:</string>
     <string name="button_save">SAVE</string>
     <string name="display_name">
-        Name: <xliff:g example="Assignment 1" id="name">%s</xliff:g>
+        Title: <xliff:g example="Assignment 1" id="name">%s</xliff:g>
     </string>
     <string name="list_item_due">
         <xliff:g example="0" id="due">%d</xliff:g> days remaining
@@ -23,9 +23,9 @@
     </string>
     <string name="create_title">Create New</string>
     <string name="prefix">assign-</string>
-    <string name="hint_name">Choose a name</string>
+    <string name="hint_name">Choose a title</string>
     <string name="hint_enter_number">Enter a number</string>
-    <string name="title_edit">Edit Saved</string>
+    <string name="name_edit">Edit Saved</string>
     <string name="label_completed">Completed pages:</string>
     <string name="label_total">Total pages:</string>
     <string name="label_edit_due">Days remaining:</string>
