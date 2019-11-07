@@ -5,4 +5,8 @@
     <color name="colorAccent">#7CA982</color>
     <color name="colorLight">#F1F7ED</color>
     <color name="colorDark">#243E36</color>
+    <color name="colorTextTitle">#243E36</color>
+    <color name="colorTextLabel">#243E36</color>
+    <color name="colorTextLight">#FFFFFF</color>
+    <color name="colorTextGrey">#555555</color>
 </resources>

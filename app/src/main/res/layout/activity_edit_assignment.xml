@@ -16,7 +16,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="@string/name_edit"
-        android:textColor="#000000"
+        android:textColor="@color/colorTextTitle"
         android:textSize="21sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/label_name"
-        android:textColor="#000000"
+        android:textColor="@color/colorTextLabel"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -91,7 +91,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/label_completed"
-        android:textColor="#000000"
+        android:textColor="@color/colorTextLabel"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelName" />
@@ -104,7 +104,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/label_total"
-        android:textColor="#000000"
+        android:textColor="@color/colorTextLabel"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelCompleted" />
@@ -117,7 +117,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/label_edit_due"
-        android:textColor="#000000"
+        android:textColor="@color/colorTextLabel"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelTotal" />
@@ -130,7 +130,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/label_edit_start"
-        android:textColor="#000000"
+        android:textColor="@color/colorTextLabel"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelDue" />
@@ -147,7 +147,7 @@
         android:background="@color/colorAccent"
         android:onClick="saveEditedAssignment"
         android:text="@string/button_save"
-        android:textColor="@color/colorLight"
+        android:textColor="@color/colorTextLight"
         android:textSize="18sp"
         app:layout_constraintCircleRadius="0dp"
         app:layout_constraintEnd_toEndOf="parent"
