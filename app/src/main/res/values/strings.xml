@@ -19,7 +19,10 @@
         <xliff:g example="0" id="completed">%d</xliff:g> of <xliff:g example="0" id="total">%d</xliff:g> pages completed
     </string>
     <string name="display_units_remaining">
-        <xliff:g example="0" id="completed">%d</xliff:g> pages remaining
+        <xliff:g example="0" id="remaining">%d</xliff:g> pages remaining
+    </string>
+    <string name="list_item_date">
+        Date Due: <xliff:g example="2030/04/18" id="dueDate">%s</xliff:g>
     </string>
     <string name="create_title">Create New</string>
     <string name="prefix">assign-</string>
@@ -30,4 +33,6 @@
     <string name="label_total">Total pages:</string>
     <string name="label_edit_due">Days remaining:</string>
     <string name="label_edit_start">Total Days:</string>
+    <string name="edit_date">Select a Date</string>
+    <string name="label_edit_date">Date Due:</string>
 </resources>

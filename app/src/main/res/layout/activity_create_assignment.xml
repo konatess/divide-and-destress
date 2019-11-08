@@ -19,6 +19,7 @@
         android:hint="@string/hint_name"
         android:importantForAutofill="no"
         android:inputType="textNoSuggestions|textCapSentences"
+        android:textSize="@dimen/enterText"
         app:layout_constraintBaseline_toBaselineOf="@+id/labelTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelTitle" />
@@ -32,7 +33,7 @@
         android:layout_marginTop="32dp"
         android:text="@string/label_name"
         android:textColor="@color/colorTextLabel"
-        android:textSize="18sp"
+        android:textSize="@dimen/labels_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createTitle" />
 
@@ -45,7 +46,7 @@
         android:layout_marginTop="24dp"
         android:text="@string/label_number_units"
         android:textColor="@color/colorTextLabel"
-        android:textSize="18sp"
+        android:textSize="@dimen/labels_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelTitle" />
 
@@ -58,7 +59,7 @@
         android:layout_marginTop="24dp"
         android:text="@string/label_due"
         android:textColor="@color/colorTextLabel"
-        android:textSize="18sp"
+        android:textSize="@dimen/labels_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelNumberUnits" />
 
@@ -74,6 +75,7 @@
         android:hint="@string/hint_enter_number"
         android:importantForAutofill="no"
         android:inputType="number"
+        android:textSize="@dimen/enterText"
         app:layout_constraintBaseline_toBaselineOf="@+id/labelNumberUnits"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelNumberUnits" />
@@ -90,9 +92,39 @@
         android:hint="@string/hint_enter_number"
         android:importantForAutofill="no"
         android:inputType="number"
+        android:textSize="@dimen/enterText"
         app:layout_constraintBaseline_toBaselineOf="@+id/labelDue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelDue" />
+
+    <TextView
+        android:id="@+id/labelDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/label_edit_date"
+        android:textColor="@color/colorTextLabel"
+        android:textSize="@dimen/labels_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelDue" />
+
+    <TextView
+        android:id="@+id/createDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:hint="@string/edit_date"
+        android:textColor="@color/colorTextLabel"
+        android:textSize="@dimen/labels_size"
+        app:layout_constraintBaseline_toBaselineOf="@+id/labelDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/labelDate" />
 
     <Button
         android:id="@+id/button"
@@ -111,7 +143,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelDue" />
+        app:layout_constraintTop_toBottomOf="@+id/createDate" />
 
     <TextView
         android:id="@+id/createTitle"

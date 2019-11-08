@@ -9,6 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+
 public class DisplayAssignmentActivity extends AppCompatActivity {
 
     public static final String EXTRA_NAME = "com.thebenk.divideanddestress.NAME";
@@ -52,6 +55,10 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
         } else {
             short unitsRemaining = (short) (assignment.unitsTotal - assignment.unitsCompleted);
             float perDay = (float) unitsRemaining / assignment.daysRemaining;
+            Calendar calendar = Calendar.getInstance();
+            String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+//            String dateString = getString(assignment.dueDate);
+
 
             // Fill info from file to TextViews
             TextView textViewName = findViewById(R.id.displayName);
@@ -68,6 +75,9 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
 
             TextView textViewDue = findViewById(R.id.displayDue);
             textViewDue.setText(getString(R.string.list_item_due, assignment.daysRemaining));
+
+            TextView textViewDueDate = findViewById(R.id.displayDueDate);
+            textViewDueDate.setText(getString(R.string.list_item_date, currentDate));
         }
     }
 }
