@@ -35,10 +35,20 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+                int year;
+                int month;
+                int dayOfMonth;
+                if (chosenYear == 0) {
+                    Calendar c = Calendar.getInstance();
+                    year = c.get(Calendar.YEAR);
+                    month = c.get(Calendar.MONTH);
+                    dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+                }
+                else {
+                    year = chosenYear;
+                    month = chosenMonth;
+                    dayOfMonth = chosenDay;
+                }
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         CreateAssignmentActivity.this,
