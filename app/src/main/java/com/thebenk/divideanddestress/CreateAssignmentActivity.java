@@ -20,6 +20,10 @@ public class CreateAssignmentActivity extends AppCompatActivity {
 //  Text view to choose due date, and on click listener
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+//  Save year, month, day temporarily every time the calendar is picked.
+    private int chosenYear;
+    private int chosenMonth;
+    private int chosenDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +55,11 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//              Calendar picker starts from 0 for January, +1 for human readability.
-                month = month + 1;
-                String date = year + " / " + month + " / " + dayOfMonth;
-                mDisplayDate.setText(date);
+                // Calendar picker starts from 0 for January, +1 for human readability.
+                mDisplayDate.setText(getString(R.string.display_date_output, year, month+1, dayOfMonth));
+                chosenYear = year;
+                chosenMonth = month;
+                chosenDay = dayOfMonth;
             }
         };
     }
@@ -72,18 +77,23 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         String dueText = createDue.getText().toString();
         short due = Short.parseShort(dueText);
 
+        // Build year
+        Calendar c = Calendar.getInstance();
+        c.set(chosenYear, chosenMonth, chosenDay);
+
         // Build Assignment object to save
         Assignment assignment = new Assignment();
         assignment.name = name;
         assignment.unitsTotal = numUnits;
         assignment.daysRemaining = due;
         assignment.daysTotal = due;
+        assignment.dueDate = c.getTimeInMillis();
         // Add prefix for easy identification
         String fileName = getString(R.string.prefix) + name;
         // Save Assignment to file
         assignment.saveAssignment(this, fileName, assignment);
 
-        //Open Display Activity with the new Assignment's info
+        // Open Display Activity with the new Assignment's info
         Intent intent = new Intent(this, DisplayAssignmentActivity.class);
         intent.putExtra(EXTRA_NAME, fileName);
         startActivity(intent);

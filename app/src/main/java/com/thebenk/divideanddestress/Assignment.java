@@ -17,7 +17,7 @@ class Assignment implements Serializable {
     short unitsCompleted = 0;
     short daysTotal;
     short daysRemaining;
-    int dueDate;
+    long dueDate;
 
     public Assignment getAssignment(Context context, String fileName) {
         Assignment assignment = null;

@@ -35,4 +35,7 @@
     <string name="label_edit_start">Total Days:</string>
     <string name="edit_date">Select a Date</string>
     <string name="label_edit_date">Date Due:</string>
+    <string name="display_date_output">
+         <xliff:g example="2000" id="year">%d</xliff:g> / <xliff:g example="1" id="month">%d</xliff:g> / <xliff:g example="1" id="day">%d</xliff:g>
+    </string>
 </resources>
