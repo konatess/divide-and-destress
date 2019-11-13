@@ -67,22 +67,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelTotal" />
 
-    <EditText
-        android:id="@+id/editStart"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:hint="@string/hint_enter_number"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        app:layout_constraintBaseline_toBaselineOf="@+id/labelStart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelStart" />
-
     <TextView
         android:id="@+id/labelCompleted"
         android:layout_width="wrap_content"
@@ -114,9 +98,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
-        android:text="@string/label_edit_due"
+        android:text="@string/label_edit_date"
         android:textColor="@color/colorTextLabel"
         android:textSize="@dimen/labels_size"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,10 +123,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
         android:background="@color/colorAccent"
         android:onClick="saveEditedAssignment"
         android:text="@string/button_save"
@@ -152,7 +133,7 @@
         app:layout_constraintCircleRadius="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editStart" />
+        app:layout_constraintTop_toBottomOf="@+id/labelStart" />
 
     <EditText
         android:id="@+id/editName"
@@ -170,20 +151,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelName" />
 
-    <EditText
+    <TextView
         android:id="@+id/editDue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:hint="@string/hint_enter_number"
-        android:importantForAutofill="no"
-        android:inputType="number"
+        android:text="@string/display_date_output"
+        android:textColor="@color/colorTextBlack"
+        android:textSize="@dimen/enterText"
         app:layout_constraintBaseline_toBaselineOf="@+id/labelDue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelDue" />
+
+    <TextView
+        android:id="@+id/editStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="@string/display_date_output"
+        android:textSize="@dimen/enterText"
+        app:layout_constraintBaseline_toBaselineOf="@+id/labelStart"
+        app:layout_constraintStart_toEndOf="@+id/labelStart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

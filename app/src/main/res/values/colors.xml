@@ -9,4 +9,5 @@
     <color name="colorTextLabel">#243E36</color>
     <color name="colorTextLight">#FFFFFF</color>
     <color name="colorTextGrey">#555555</color>
+    <color name="colorTextBlack">#000000</color>
 </resources>

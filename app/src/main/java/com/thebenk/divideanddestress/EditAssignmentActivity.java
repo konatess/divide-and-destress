@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.threeten.bp.LocalDate;
 
 public class EditAssignmentActivity extends AppCompatActivity {
 
@@ -41,17 +44,22 @@ public class EditAssignmentActivity extends AppCompatActivity {
             EditText editName = findViewById(R.id.editName);
             editName.setText(assignment.name);
 
+            // Get due date
+//            LocalDate dueDate = assignment.dueDate;
+            // Get start date
+//            LocalDate startDate = assignment.startDate;
+
             EditText editCompleted = findViewById(R.id.editCompleted);
             editCompleted.setText(String.valueOf(assignment.unitsCompleted));
 //
             EditText editTotalUnits = findViewById(R.id.editTotal);
             editTotalUnits.setText(String.valueOf(assignment.unitsTotal));
 
-            EditText editDaysRemaining = findViewById(R.id.editDue);
-            editDaysRemaining.setText(String.valueOf(assignment.daysRemaining));
+            TextView editDueDate = findViewById(R.id.editDue);
+            editDueDate.setText(assignment.dueDate.toString());
 
-            EditText editTotalDays = findViewById(R.id.editStart);
-            editTotalDays.setText(String.valueOf(assignment.daysTotal));
+            TextView editStartDate = findViewById(R.id.editStart);
+            editStartDate.setText(assignment.startDate.toString());
         }
     }
 
@@ -68,21 +76,21 @@ public class EditAssignmentActivity extends AppCompatActivity {
         String unitsTotalText = editTotalUnits.getText().toString();
         short unitsTotal = Short.parseShort(unitsTotalText);
 
-        EditText editDue = findViewById(R.id.editDue);
+        TextView editDue = findViewById(R.id.editDue);
         String dueText = editDue.getText().toString();
-        short due = Short.parseShort(dueText);
+        LocalDate due = LocalDate.parse(dueText);
 
-        EditText editStart = findViewById(R.id.editStart);
+        TextView editStart = findViewById(R.id.editStart);
         String startText = editStart.getText().toString();
-        short start = Short.parseShort(startText);
+        LocalDate start = LocalDate.parse(startText);
 
         // Build Assignment object to save
         Assignment assignment = new Assignment();
         assignment.name = name;
         assignment.unitsCompleted = unitsCompleted;
         assignment.unitsTotal = unitsTotal;
-        assignment.daysRemaining = due;
-        assignment.daysTotal = start;
+        assignment.dueDate = due;
+        assignment.startDate = start;
 
         // if name is changed, delete old file by name.
         if (!oldName.equals(assignment.name)) {

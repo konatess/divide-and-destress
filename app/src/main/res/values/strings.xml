@@ -32,7 +32,7 @@
     <string name="label_completed">Completed pages:</string>
     <string name="label_total">Total pages:</string>
     <string name="label_edit_due">Days remaining:</string>
-    <string name="label_edit_start">Total Days:</string>
+    <string name="label_edit_start">Start Date:</string>
     <string name="edit_date">Select a Date</string>
     <string name="label_edit_date">Date Due:</string>
     <string name="display_date_output">

@@ -15,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.temporal.ChronoUnit;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -61,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     private void getFiles() {
         Log.d(TAG, "getFiles: Getting files...");
         String[] files = fileList();
+        //save today's date for calculating days remaining
+        LocalDate today = LocalDate.now();
         // Check for files with prefix and display only those
         for (String file : files)
         {
@@ -70,7 +75,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
                 // The info from the file to each of the ArrayLists
                 if (assignment != null) {
                     mNames.add(assignment.name);
-                    mDues.add(getString(R.string.list_item_due, assignment.daysRemaining));
+                    mDues.add(getString(R.string.list_item_due,
+                            ChronoUnit.DAYS.between(today, assignment.dueDate)
+                    ));
                 }
             }
         }

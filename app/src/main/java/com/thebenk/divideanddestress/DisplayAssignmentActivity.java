@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.text.DateFormat;
-import java.util.Calendar;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.temporal.ChronoUnit;
 
 public class DisplayAssignmentActivity extends AppCompatActivity {
 
@@ -53,11 +53,20 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
         if (assignment == null) {
             throw new AssertionError();
         } else {
+            // Get current date
+            LocalDate today = LocalDate.now();
+            // Get due date
+            LocalDate dueDate = assignment.dueDate;
+            // Get start date
+            LocalDate startDate = assignment.startDate;
+            // Calculate total days
+            long totalDays = ChronoUnit.DAYS.between(startDate, dueDate);
+            // Calculate remaining days
+            long remainDays = ChronoUnit.DAYS.between(today, dueDate);
+            // Calculate units remaining
             short unitsRemaining = (short) (assignment.unitsTotal - assignment.unitsCompleted);
-            float perDay = (float) unitsRemaining / assignment.daysRemaining;
-            Calendar calendar = Calendar.getInstance();
-            String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
-//            String dateString = getString(assignment.dueDate);
+            // Calculate units per day
+            float perDay = (float) unitsRemaining / remainDays;
 
 
             // Fill info from file to TextViews
@@ -74,10 +83,10 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
             textViewRemaining.setText(getString(R.string.display_units_remaining, unitsRemaining));
 
             TextView textViewDue = findViewById(R.id.displayDue);
-            textViewDue.setText(getString(R.string.list_item_due, assignment.daysRemaining));
+            textViewDue.setText(getString(R.string.list_item_due, remainDays));
 
             TextView textViewDueDate = findViewById(R.id.displayDueDate);
-            textViewDueDate.setText(getString(R.string.list_item_date, currentDate));
+            textViewDueDate.setText(getString(R.string.list_item_date, dueDate.toString()));
         }
     }
 }

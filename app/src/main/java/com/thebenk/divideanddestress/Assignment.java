@@ -3,6 +3,8 @@ package com.thebenk.divideanddestress;
 import android.content.Context;
 import android.util.Log;
 
+import org.threeten.bp.LocalDate;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -15,9 +17,8 @@ class Assignment implements Serializable {
     public String name;
     short unitsTotal;
     short unitsCompleted = 0;
-    short daysTotal;
-    short daysRemaining;
-    long dueDate;
+    LocalDate dueDate;
+    LocalDate startDate;
 
     public Assignment getAssignment(Context context, String fileName) {
         Assignment assignment = null;

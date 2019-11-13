@@ -12,12 +12,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Calendar;
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.temporal.ChronoUnit;
 
 public class CreateAssignmentActivity extends AppCompatActivity {
     public static final String EXTRA_NAME = "com.thebenk.divideanddestress.NAME";
 //  Text view to choose due date, and on click listener
     private TextView mDisplayDate;
+    private EditText mDaysRemaining;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 //  Save year, month, day temporarily every time the calendar is picked.
     private int chosenYear;
@@ -29,6 +31,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_assignment);
         mDisplayDate = findViewById(R.id.createDate);
+        mDaysRemaining = findViewById(R.id.createDue);
 
 //      Listener for click to edit Date TextView
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -38,10 +41,16 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                 int month;
                 int dayOfMonth;
                 if (chosenYear == 0) {
-                    Calendar c = Calendar.getInstance();
-                    year = c.get(Calendar.YEAR);
-                    month = c.get(Calendar.MONTH);
-                    dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+//                    Calendar c = Calendar.getInstance();
+//                    year = c.get(Calendar.YEAR);
+//                    month = c.get(Calendar.MONTH);
+//                    dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+
+                    // Attempting to use ThreeTen instead of Calendar
+                    LocalDate now = LocalDate.now();
+                    year = now.getYear();
+                    month = now.getMonthValue();
+                    dayOfMonth = now.getDayOfMonth();
                 }
                 else {
                     year = chosenYear;
@@ -53,7 +62,8 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                         CreateAssignmentActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateSetListener,
-                        year, month, dayOfMonth
+                        // Date picker starts from 0 for January, -1 to convert from LocalDate format.
+                        year, month-1, dayOfMonth
                 );
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
@@ -63,12 +73,19 @@ public class CreateAssignmentActivity extends AppCompatActivity {
 //      Listener for finish choosing date, display in text area
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                // Calendar picker starts from 0 for January, +1 for human readability.
-                mDisplayDate.setText(getString(R.string.display_date_output, year, month+1, dayOfMonth));
-                chosenYear = year;
-                chosenMonth = month;
-                chosenDay = dayOfMonth;
+            public void onDateSet(DatePicker view, int pickedYear, int pickedMonth, int pickedDayOfMonth) {
+                // Date picker starts from 0 for January, +1 for human readability, and for ThreeTen compatibility.
+                pickedMonth = pickedMonth+1;
+                mDisplayDate.setText(getString(
+                        R.string.display_date_output, pickedYear, pickedMonth, pickedDayOfMonth
+                ));
+                chosenYear = pickedYear;
+                chosenMonth = pickedMonth;
+                chosenDay = pickedDayOfMonth;
+                long days = ChronoUnit.DAYS.between(
+                        LocalDate.now(), LocalDate.of(pickedYear, pickedMonth, pickedDayOfMonth)
+                );
+                mDaysRemaining.setText(String.valueOf(days));
             }
         };
     }
@@ -86,17 +103,17 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         String dueText = createDue.getText().toString();
         short due = Short.parseShort(dueText);
 
-        // Build year
-        Calendar c = Calendar.getInstance();
-        c.set(chosenYear, chosenMonth, chosenDay);
+        // Build due date and get today's date as start.
+        // Start date will not be editable at this time.
+        LocalDate dueDate = LocalDate.of(chosenYear, chosenMonth, chosenDay);
+        LocalDate startDate = LocalDate.now();
 
         // Build Assignment object to save
         Assignment assignment = new Assignment();
         assignment.name = name;
         assignment.unitsTotal = numUnits;
-        assignment.daysRemaining = due;
-        assignment.daysTotal = due;
-        assignment.dueDate = c.getTimeInMillis();
+        assignment.dueDate = dueDate;
+        assignment.startDate = startDate;
         // Add prefix for easy identification
         String fileName = getString(R.string.prefix) + name;
         // Save Assignment to file
