@@ -13,7 +13,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.threeten.bp.LocalDate;
-import org.threeten.bp.temporal.ChronoUnit;
+
+import java.util.Objects;
 
 public class CreateAssignmentActivity extends AppCompatActivity {
     public static final String EXTRA_NAME = "com.thebenk.divideanddestress.NAME";
@@ -58,7 +59,7 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                         // Date picker starts from 0 for January, -1 to convert from LocalDate format.
                         year, month-1, dayOfMonth
                 );
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });

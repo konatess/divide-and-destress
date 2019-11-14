@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.threeten.bp.LocalDate;
 
+import java.util.Objects;
+
 public class EditAssignmentActivity extends AppCompatActivity {
 
     private static final String TAG = "EditAssignmentActivity";
@@ -60,7 +62,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
                         // Date picker starts from 0 for January, -1 to convert from LocalDate format.
                         year, month-1, dayOfMonth
                 );
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });
@@ -140,7 +142,7 @@ public class EditAssignmentActivity extends AppCompatActivity {
         assignment.name = name;
         assignment.unitsCompleted = unitsCompleted;
         assignment.unitsTotal = unitsTotal;
-        assignment.dueDate = LocalDate.of(chosenYear, chosenMonth, chosenDay);;
+        assignment.dueDate = LocalDate.of(chosenYear, chosenMonth, chosenDay);
         assignment.startDate = start;
 
         // if name is changed, delete old file by name.
