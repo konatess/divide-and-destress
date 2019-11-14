@@ -74,7 +74,12 @@ public class DisplayAssignmentActivity extends AppCompatActivity {
             textViewName.setText(getString(R.string.display_name, assignment.name));
 
             TextView textViewPerDay = findViewById(R.id.displayPerDay);
-            textViewPerDay.setText(getString(R.string.display_units_per_day, perDay));
+            if (remainDays > 0) {
+                textViewPerDay.setText(getString(R.string.display_units_per_day, perDay));
+            }
+            else {
+                textViewPerDay.setText("OVERDUE");
+            }
 
             TextView textViewCompleted = findViewById(R.id.displayCompleted);
             textViewCompleted.setText(getString(R.string.display_completed, assignment.unitsCompleted, assignment.unitsTotal));
