@@ -17,11 +17,10 @@ import org.threeten.bp.temporal.ChronoUnit;
 
 public class CreateAssignmentActivity extends AppCompatActivity {
     public static final String EXTRA_NAME = "com.thebenk.divideanddestress.NAME";
-//  Text view to choose due date, and on click listener
+    // Text view to choose due date, and on click listener
     private TextView mDisplayDate;
-    private EditText mDaysRemaining;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-//  Save year, month, day temporarily every time the calendar is picked.
+    // Save year, month, day temporarily every time the calendar is picked.
     private int chosenYear;
     private int chosenMonth;
     private int chosenDay;
@@ -31,9 +30,8 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_assignment);
         mDisplayDate = findViewById(R.id.createDate);
-        mDaysRemaining = findViewById(R.id.createDue);
 
-//      Listener for click to edit Date TextView
+        // Listener for click to edit Date TextView
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,11 +39,6 @@ public class CreateAssignmentActivity extends AppCompatActivity {
                 int month;
                 int dayOfMonth;
                 if (chosenYear == 0) {
-//                    Calendar c = Calendar.getInstance();
-//                    year = c.get(Calendar.YEAR);
-//                    month = c.get(Calendar.MONTH);
-//                    dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
-
                     // Attempting to use ThreeTen instead of Calendar
                     LocalDate now = LocalDate.now();
                     year = now.getYear();
@@ -70,22 +63,16 @@ public class CreateAssignmentActivity extends AppCompatActivity {
             }
         });
 
-//      Listener for finish choosing date, display in text area
+        // Listener for finish choosing date, display in text area
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int pickedYear, int pickedMonth, int pickedDayOfMonth) {
                 // Date picker starts from 0 for January, +1 for human readability, and for ThreeTen compatibility.
-                pickedMonth = pickedMonth+1;
-                mDisplayDate.setText(getString(
-                        R.string.display_date_output, pickedYear, pickedMonth, pickedDayOfMonth
-                ));
+                pickedMonth++;
+                mDisplayDate.setText(LocalDate.of(pickedYear, pickedMonth, pickedDayOfMonth).toString());
                 chosenYear = pickedYear;
                 chosenMonth = pickedMonth;
                 chosenDay = pickedDayOfMonth;
-                long days = ChronoUnit.DAYS.between(
-                        LocalDate.now(), LocalDate.of(pickedYear, pickedMonth, pickedDayOfMonth)
-                );
-                mDaysRemaining.setText(String.valueOf(days));
             }
         };
     }
@@ -98,10 +85,6 @@ public class CreateAssignmentActivity extends AppCompatActivity {
         EditText createNumUnits = findViewById(R.id.createNumUnits);
         String numUnitsText = createNumUnits.getText().toString();
         short numUnits = Short.parseShort(numUnitsText);
-
-        EditText createDue = findViewById(R.id.createDue);
-        String dueText = createDue.getText().toString();
-        short due = Short.parseShort(dueText);
 
         // Build due date and get today's date as start.
         // Start date will not be editable at this time.
